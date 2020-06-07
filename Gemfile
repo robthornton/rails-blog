@@ -58,3 +58,5 @@ gem 'shopify-cloud', source: 'https://packages.shopify.io/shopify/gems'
 gem 'monorail', source: 'https://packages.shopify.io/shopify/gems'
 gem 'kafka-shopify', source: 'https://packages.shopify.io/shopify/gems'
 gem 'rubocop-shopify', require: false
+
+gem "bcrypt", "~> 3.1"

@@ -1,0 +1,22 @@
+containers:
+  default:
+    docker: circleci/ruby:2.6.3-node-browsers
+steps:
+  - label: "Prepare dependencies"
+    run:
+      - bundle: ~
+    timeout: 10m
+  - wait
+  - label: "Tests"
+    run:
+      - bundle exec minitest-queue --queue redis://example.com run -Itest test/**/*_test.rb
+    services:
+      redis: "alpine"
+      mysql: "5.6"
+    timeout: 2m
+  - label: "Ruby Lint"
+    run:
+      - bundle exec rubocop
+    cache:
+      - tmp/rubocop
+    timeout: 60s

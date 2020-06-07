@@ -1,0 +1,8 @@
+version: 1
+update_configs:
+  - package_manager: "ruby:bundler"
+    directory: "/"
+    update_schedule: "weekly"
+    default_labels:
+      - "Gem upgrades"
+    version_requirement_updates: "auto"

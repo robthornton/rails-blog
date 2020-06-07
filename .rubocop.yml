@@ -1,0 +1,8 @@
+inherit_gem:
+  rubocop-shopify: rubocop.yml
+
+AllCops:
+  TargetRubyVersion: 2.6.3
+  Exclude:
+    - bin/*
+    - node_modules/**/*

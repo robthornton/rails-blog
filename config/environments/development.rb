@@ -61,4 +61,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.hosts << 'rails-blog.myshopify.io'
+  config.web_console.whitelisted_ips = '192.168.64.0/24'
 end

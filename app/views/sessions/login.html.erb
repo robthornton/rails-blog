@@ -1,0 +1,17 @@
+<h1>Login</h1>
+
+<%= form_tag do %>
+  <div class="field">
+    <%= label_tag(:email, 'Email:') %>
+    <%= email_field_tag(:email) %>
+  </div>
+  <div class="field">
+    <%= label_tag(:password, 'Password:') %>
+    <%= password_field_tag(:password) %>
+  </div>
+  <div class="field">
+    <div class="actions">
+        <%= submit_tag('Sign Up', {class: 'button button-primary'}) %>
+    </div>
+  </div>
+<% end %>

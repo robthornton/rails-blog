@@ -2,4 +2,9 @@
   <div class="header">
     Header
   </div>
+  <div class="messages">
+    <% flash.each do |type, message| %>
+      <div class="message <%= type %>"><%= message %></div>
+    <% end %>
+  </div>
 </div>

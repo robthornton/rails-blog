@@ -1,0 +1,20 @@
+form {
+
+  .field {
+    display: flex;
+    padding: 5px 0;
+
+    input {
+      width: 100%;
+      font-size: 16px;
+    }
+
+    label {
+      padding-right: 5px;
+      width: 180px;
+      font-family: 'Arial';
+      font-size: 16px;
+      text-align: right;
+    }
+  }
+}

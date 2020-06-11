@@ -1,5 +1,18 @@
 <div class="container">
   <div class="header">
     Header
+    <div class="menu">
+      <% unless logged_in? %>
+        <div class="button primary"><%= link_to('Login', login_path) %></div>
+      <% else %>
+        <div class="user"><%= current_user.name %></div>
+        <div class="button secondary"><%= link_to('Logout', logout_path) %></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="messages">
+    <% flash.each do |type, message| %>
+      <div class="message <%= type %>"><%= message %></div>
+    <% end %>
   </div>
 </div>

@@ -1,0 +1,18 @@
+.header {
+  padding: 30px 20px;
+  background-color: #ccc;
+}
+
+.messages {
+  .message {
+    padding: 5px 20px;
+
+    &.error {
+      background-color: #f00;
+    }
+
+    &.notice {
+      background-color: #0f0;
+    }
+  }
+}

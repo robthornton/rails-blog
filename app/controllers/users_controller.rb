@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   def create
     if user_params[:password] != user_params[:password_confirmation]
@@ -6,9 +8,12 @@ class UsersController < ApplicationController
     end
 
     user = User.create(user_params.except(:password_confirmation))
-    if user.errors
+    unless user.valid?
       # TODO Properly log errors
-      puts(user.errors.to_s)
+      user.errors.each do |key, msg|
+        puts "#{key}: #{msg} #{user_params[:email]}"
+      end
+
       redirect_to(signup_path, flash: { error: 'Sign up failed!' })
       return
     end

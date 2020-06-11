@@ -3,8 +3,6 @@
 module SessionsHelper
 
   def logged_in?
-    puts "current user: #{current_user}"
-    puts "session email: #{session[:email]}"
     !@current_user.nil?
   end
 

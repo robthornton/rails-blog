@@ -14,6 +14,6 @@ class CommentTest < ActiveSupport::TestCase
   private
 
   def params
-    { body: 'Body', user: users(:jane) }
+    { body: 'Body',post: posts(:post_one), user: users(:jane) }
   end
 end

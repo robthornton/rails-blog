@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   root('post#index')
 
   # Blog/posts
-  get('post/new', to: 'post#new')
-  post('post/new', to: 'post#create')
+  resources(:post)
 
   # Login
   get('login', to: 'sessions#new')

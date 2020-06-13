@@ -1,13 +1,13 @@
 .posts {
   .post-item {
-    margin: 20px 0;
+    margin: 10px 0;
+    padding: 10px;
 
-    border-bottom: 1px solid #999;
+    background-color: #eee;
+    border-radius: 10px;
     font-family: 'Arial';
 
     &:last-child {
-      border-bottom: none;
-
       .info {
         padding-bottom: 0;
       }
@@ -20,12 +20,12 @@
     .info {
       display: flex;
       margin-top: 5px;
-      max-width: 500px;
-      padding-bottom: 10px;
+      padding-top: 10px;
 
+      border-top: 1px solid #999;
       flex-wrap: wrap;
       font-size: 12px;
-      justify-content: space-around;
+      justify-content: space-between;
     }
   }
 }

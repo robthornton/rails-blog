@@ -4,6 +4,7 @@ class PostController < ApplicationController
   before_action(:require_login, only: [:new, :create])
 
   def new
+    @post = Post.new
   end
 
   def create
@@ -23,14 +24,33 @@ class PostController < ApplicationController
       return
     end
 
-    flash[:notice] = 'Post created successfully!'
+    flash[:notice] = 'New post created successfully!'
     redirect_to(post)
+  end
+
+  def destroy
+    Post.destroy(id)
+    redirect_to(root_path, notice: "Post #{id} deleted")
+  end
+
+  def edit
+    @post = Post.find(id)
+  end
+
+  def update
+    post = Post.find(id)
+    post.update(post_params)
+    redirect_to(root_path, notice: "Post #{id} updated")
   end
 
   private
 
+  def id
+    params[:id]
+  end
+
   def post_params
-    params.permit(:body)
+    params.require(:post).permit(:body)
   end
 
   def require_login

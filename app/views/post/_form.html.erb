@@ -1,0 +1,12 @@
+<%= form_with(model: @post) do |f| %>
+  <div class="field">
+    <%= f.label(:body, 'Body:') %>
+    <%= f.text_area(:body, { rows: 10 }) %>
+  </div>
+  <div class="field">
+    <div class="actions">
+      <%= f.submit('Create', { class: 'button primary' }) %>
+      <%= link_to('Cancel', :back) %>
+    </div>
+  </div>
+<% end %>

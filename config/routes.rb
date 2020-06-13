@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
-  root('post#index')
+  root('posts#index')
 
   # Blog/posts
-  namespace(:post) do
-    get(:new, to: 'post#new')
+  namespace(:posts) do
+    get(:new, to: 'posts#new')
   end
 
   # Login

@@ -1,0 +1,13 @@
+<h1>Create post</h1>
+
+<%= form_tag do %>
+  <div class="field">
+    <%= label_tag(:body, 'Body:') %>
+    <%= text_area_tag(:body, nil, { rows: 10 }) %>
+  </div>
+  <div class="field">
+    <div class="actions">
+      <%= submit_tag('Create', { class: 'button primary' }) %>
+    </div>
+  </div>
+<% end %>

@@ -1,11 +1,13 @@
-<div class="body">
-  <%= post.body %>
-</div>
-<div class="info">
-  <div class="author">
-    Written by: <%= post.user.name %>
+<div class="post-item">
+  <div class="body">
+    <%= post.body %>
   </div>
-  <div class="created">
-    On: <%= post.created_at %>
+  <div class="info">
+    <div class="author">
+      Author: <%= post.user.name %>
+    </div>
+    <div class="created">
+      Created: <%= post.created_at %>
+    </div>
   </div>
 </div>

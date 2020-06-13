@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   # Blog/posts
   get('post/new', to: 'post#new')
+  post('post/new', to: 'post#create')
 
   # Login
   get('login', to: 'sessions#new')

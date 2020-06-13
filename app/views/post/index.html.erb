@@ -5,9 +5,7 @@
     <%= link_to('Create new', post_new_path) %>
   </div>
 
-  <% Post.all.each do |p| %>
-    <div class="post-item">
-     <%= render('post', locals: { post: p }) %>
-    </div>
-  <% end %>
+  <div class="posts">
+    <%= render(partial: 'post', collection: Post.all) %>
+  </div>
 </div

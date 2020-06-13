@@ -14,6 +14,24 @@ class PostTest < ActiveSupport::TestCase
     end
   end
 
+  test 'post with tags' do
+    post = posts(:post_one)
+
+    post.tags.create!(name: 'tag0')
+    post.tags.create!(name: 'tag1')
+
+    assert_equal(2, post.tags.count)
+  end
+
+  test 'post with comments' do
+    post = posts(:post_one)
+
+    post.comments << comments(:comment_jane)
+    post.comments << comments(:comment_john)
+
+    assert_equal(2, post.comments.count)
+  end
+
   private
 
   def params

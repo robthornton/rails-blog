@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
-  root('post#index')
+  root('posts#index')
 
   # Blog/posts
-  resources(:post)
+  resources(:posts)
 
   # Login
   get('login', to: 'sessions#new')

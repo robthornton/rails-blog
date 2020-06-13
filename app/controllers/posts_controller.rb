@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-class PostController < ApplicationController
+class PostsController < ApplicationController
   before_action(:require_login, only: [:new, :create])
-
-  def new
-    @post = Post.new
-  end
 
   def create
     post = Post.create({
@@ -35,6 +31,14 @@ class PostController < ApplicationController
 
   def edit
     @post = Post.find(id)
+  end
+
+  def index
+    @posts = Post.all
+  end
+
+  def new
+    @post = Post.new
   end
 
   def update

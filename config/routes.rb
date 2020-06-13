@@ -3,14 +3,13 @@ Rails.application.routes.draw do
   root('post#index')
 
   # Blog/posts
-  resources(:post) do
-    get(:new, to: 'post#new')
-  end
+  get('post/new', to: 'post#new')
 
   # Login
-  get('login', to: 'sessions#login')
-  post('login', to: 'sessions#new')
-  get('logout', to: 'sessions#delete')
+  get('login', to: 'sessions#new')
+  post('login', to: 'sessions#create')
+
+  get('logout', to: 'sessions#destroy')
 
   # Sign up
   get('signup', to: 'users#new')

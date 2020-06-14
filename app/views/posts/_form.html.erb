@@ -4,8 +4,12 @@
     <%= f.text_area(:body, { rows: 10 }) %>
   </div>
   <div class="field">
+    <%= label_tag('post[tags]', 'Tags:') %>
+    <%= text_field_tag('post[tags]', @tags) %>
+  </div>
+  <div class="field">
     <div class="actions">
-      <%= f.submit('Create', { class: 'button primary' }) %>
+      <%= f.submit(button, { class: 'button primary' }) %>
       <%= link_to('Cancel', :back) %>
     </div>
   </div>

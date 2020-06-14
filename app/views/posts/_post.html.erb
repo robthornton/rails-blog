@@ -2,6 +2,9 @@
   <div class="body">
     <%= post.body %>
   </div>
+  <div class="tags">
+    Tags: <%= tags_for(post: post) %>
+  </div>
   <div class="actions">
     <div class="action-item">
       <%= link_to('Edit', edit_post_path(post)) %>

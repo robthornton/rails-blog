@@ -1,3 +1,23 @@
-// Place all the styles related to the Blog controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.action-item {
+  margin: 5px 10px 5px 0;
+
+  a {
+    padding: 5px 20px;
+    background-color: #999;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #777;
+    }
+
+    &.primary {
+      background-color: #666;
+
+      &:hover {
+        background-color: #333;
+      }
+    }
+  }
+}

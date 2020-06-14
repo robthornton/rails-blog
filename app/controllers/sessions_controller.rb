@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  def login
+  def new
   end
 
-  def new
+  def create
     user = User.find_by(email: login_params[:email])
 
     unless user.authenticate(login_params[:password])
@@ -13,13 +13,12 @@ class SessionsController < ApplicationController
     end
 
     session[:email] = user.email
-    redirect_to(signup_path, flash: { notice: 'Login successful!' })
+    redirect_to(root_path, flash: { notice: 'Login successful!' })
   end
 
-  def delete
+  def destroy
     session[:email] = nil
-    reset_session
-    redirect_to(signup_path, flash: { notice: 'Logout successful!' })
+    redirect_to(root_path, flash: { notice: 'Logout successful!' })
   end
 
   private

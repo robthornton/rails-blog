@@ -1,0 +1,11 @@
+<h1>Blog posts</h1>
+
+<div class="posts">
+  <div class="create-post">
+    <%= link_to('Create new', new_post_path) %>
+  </div>
+
+  <div class="posts">
+    <%= render(partial: 'post', collection: @posts) %>
+  </div>
+</div

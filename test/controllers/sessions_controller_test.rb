@@ -13,7 +13,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     params = { email: user.email, password: 'jane.doe.password' }
     post(login_path, params: params)
 
-    assert_redirected_to(signup_path)
+    assert_redirected_to(root_path)
   end
 
   test 'new session with bad password fails to set session' do

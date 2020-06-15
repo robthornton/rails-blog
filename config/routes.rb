@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   # Sign up
   get('signup', to: 'users#new')
   post('signup', to: 'users#create')
+
+  # Stats page
+  get(:stats, to: 'stats#index')
 end

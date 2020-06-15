@@ -1,0 +1,29 @@
+.stats-page {
+  table, th, td {
+    border-collapse: collapse;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  th:first-child {
+    text-align: left;
+  }
+
+  td:last-child {
+    text-align: center;
+  }
+
+  thead tr {
+    background-color: #ccc;
+  }
+
+  tr:nth-child(even) {
+    background-color: #eee;
+  }
+
+  thead {
+    border-bottom: 1px solid #ccc;
+  }
+}

@@ -4,8 +4,9 @@
     <% if logged_in? %>
       <div class="user"><%= current_user.name %></div>
     <% end %>
-    <%= render('menu') %>
   </div>
+
+  <%= render('menu') %>
 
   <div class="messages">
     <% flash.each do |type, message| %>

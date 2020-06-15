@@ -1,6 +1,31 @@
 .header {
   padding: 30px 20px;
+
   background-color: #ccc;
+  border: 1px solid #666;
+}
+
+.menu {
+  display: flex;
+
+  .menu-item {
+    padding-right: 5px;
+
+    background-color: #fff;
+  }
+
+  a {
+    display: inline-block;
+    padding: 5px 20px 5px 20px;
+  
+    background-color: #ccc;
+    border-bottom: 1px solid #666;
+    border-right: 1px solid #666;
+    border-left: 1px solid #666;
+    border-radius: 0 0 5px 5px;
+    color: #000;
+    text-decoration: none;
+  }
 }
 
 .messages {

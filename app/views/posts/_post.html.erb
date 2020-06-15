@@ -7,10 +7,10 @@
   </div>
   <div class="actions">
     <div class="action-item">
-      <%= link_to('Edit', edit_post_path(post)) %>
+      <%= link_to('Edit', edit_post_path(post), class: 'secondary') %>
     </div>
     <div class="action-item">
-      <%= link_to('Delete', post, {method: 'delete'}) %>
+      <%= link_to('Delete', post, method: 'delete', class: 'secondary') %>
     </div>
   </div>
   <div class="info">

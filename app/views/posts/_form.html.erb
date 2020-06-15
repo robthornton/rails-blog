@@ -7,10 +7,13 @@
     <%= label_tag('post[tags]', 'Tags:') %>
     <%= text_field_tag('post[tags]', @tags) %>
   </div>
-  <div class="field">
-    <div class="actions">
+
+  <div class="actions">
+    <div class="action-item">
       <%= f.submit(button, { class: 'button primary' }) %>
-      <%= link_to('Cancel', :back) %>
+    </div>
+    <div class="action-item">
+      <%= link_to('Cancel', :back, class: 'secondary') %>
     </div>
   </div>
 <% end %>

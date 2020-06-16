@@ -1,25 +1,25 @@
 <h1>Sign Up</h1>
 
-<%= form_tag do %>
+<%= form_with(model: @user) do |f| %>
   <div class="field">
-    <%= label_tag(:name, 'Full name:')  %>
-    <%= text_field_tag(:name, '', required: true, placeholder: 'Your Name') %>
+    <%= f.label(:name, 'Full name:')  %>
+    <%= f.text_field(:name, required: true, placeholder: 'Your Name') %>
   </div>
   <div class="field">
-    <%= label_tag(:email, 'Email:')  %>
-    <%= email_field_tag(:email, '', required: true, placeholder: 'your.email@some-domain.com') %>
+    <%= f.label(:email, 'Email:')  %>
+    <%= f.email_field(:email, required: true, placeholder: 'your.email@some-domain.com') %>
   </div>
   <div class="field">
-    <%= label_tag(:password, 'Password:')  %>
-    <%= password_field_tag(:password, '', required: true) %>
+    <%= f.label(:password, 'Password:')  %>
+    <%= f.password_field(:password, required: true) %>
   </div>
   <div class="field">
-    <%= label_tag(:password_confirmation, 'Confirm password:')  %>
-    <%= password_field_tag(:password_confirmation, '', required: true) %>
+    <%= f.label(:password_confirmation, 'Confirm password:')  %>
+    <%= f.password_field(:password_confirmation, required: true) %>
   </div>
   <div class="field">
     <div class="button button-primary">
-      <%= submit_tag('Sign Up') %>
+      <%= f.submit('Sign Up') %>
     </div>
   </div>
 <% end %>

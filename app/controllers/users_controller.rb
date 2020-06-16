@@ -3,10 +3,11 @@
 class UsersController < ApplicationController
   def create
     user = User.create(user_params)
+
     unless user.valid?
       # TODO: Properly log errors
       user.errors.each do |key, msg|
-        puts "#{key}: #{msg} #{user_params[:email]}"
+        Rails.logger.info("#{key}: #{msg} #{user_params[:email]}")
       end
 
       redirect_to(signup_path, flash: { error: 'Sign up failed!' })
@@ -17,11 +18,12 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
   end
 
   private
 
   def user_params
-    params.except(:authenticity_token, :commit).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end

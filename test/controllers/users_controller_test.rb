@@ -10,17 +10,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'post to signup redirects to login' do
-    post(signup_path, params: new_user_params)
+    post(users_path, params: new_user_params)
 
     assert_redirected_to(login_path)
   end
 
   test "post to signup redirects to login when passwords don't match" do
-    params = new_user_params.merge({
+    params = new_user_params
+    params[:user].merge!({
       password: 'password',
       password_confirmation: 'drowssap',
     })
-    post(signup_path, params: params)
+    post(users_path, params: params)
 
     assert_redirected_to(signup_path)
   end
@@ -28,13 +29,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'post to signup redirects to signup with existing user' do
     user = users(:jane)
 
-    params = {
+    params = new_user_params
+    params[:user] = {
       name: user.name,
       email: user.email,
       password: 'jane.doe.password',
       password_confirmation: 'jane.doe.password',
     }
-    post(signup_path, params: params)
+    post(users_path, params: params)
 
     assert_redirected_to(signup_path)
   end
@@ -43,10 +45,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   def new_user_params
     {
-      name: random_string,
-      email: "#{random_string}@#{random_string}.com",
-      password: 'password',
-      password_confirmation: 'password',
+      user: {
+        name: random_string,
+        email: "#{random_string}@#{random_string}.com",
+        password: 'password',
+        password_confirmation: 'password',
+      }
     }
   end
 

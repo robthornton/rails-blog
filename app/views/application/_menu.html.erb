@@ -20,4 +20,10 @@
       <%= link_to('Logout', logout_path) %>
     </div>
   <% end %>
+
+  <div class="menu-item user">
+    <% if logged_in? %>
+      <div class="user"><%= current_user.name %></div>
+    <% end %>
+  </div>
 </div>

@@ -1,0 +1,27 @@
+<div class="post">
+  <div class="title">
+    <h2><%= @post.title %></h2>
+  </div>
+  <div class="body">
+    <%= @post.body %>
+  </div>
+  <div class="tags">
+    Tags: <%= tags_for(post: @post) %>
+  </div>
+  <div class="actions">
+    <div class="action-item">
+      <%= link_to('Edit', edit_post_path(@post), class: 'secondary') %>
+    </div>
+    <div class="action-item">
+      <%= link_to('Delete', @post, method: 'delete', class: 'secondary') %>
+    </div>
+  </div>
+  <div class="info">
+    <div class="author">
+      Author: <%= @post.user.name %>
+    </div>
+    <div class="created">
+      Created: <%= @post.created_at %>
+    </div>
+  </div>
+</div>

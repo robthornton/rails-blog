@@ -32,11 +32,24 @@ class PostTest < ActiveSupport::TestCase
     assert_equal(2, post.comments.count)
   end
 
+  test 'post should not have empty body' do
+    p = params
+    p[:body] = ''
+    assert_raises { Post.create!(p) }
+  end
+
+  test 'post should not have empty title' do
+    p = params
+    p[:title] = ''
+    assert_raises { Post.create!(p) }
+  end
+
   private
 
   def params
     {
       body: 'Body',
+      title: 'Title',
       user: users(:jane),
     }
   end

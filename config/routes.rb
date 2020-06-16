@@ -6,15 +6,16 @@ Rails.application.routes.draw do
   resources(:posts)
 
   # Login
-  get('login', to: 'sessions#new')
-  post('login', to: 'sessions#create')
-
-  get('logout', to: 'sessions#destroy')
+  get(:login, to: 'sessions#new')
+  post(:login, to: 'sessions#create')
+  get(:logout, to: 'sessions#destroy')
 
   # Sign up
-  get('signup', to: 'users#new')
-  post('signup', to: 'users#create')
+  get(:signup, to: 'users#new')
 
   # Stats page
   get(:stats, to: 'stats#index')
+
+  # Users
+  resources(:users, only: [:create])
 end

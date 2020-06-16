@@ -1,16 +1,16 @@
 <div class="post-item">
+  <div class="title">
+    <h3><%= link_to(post.title, post) %></h3>
+  </div>
   <div class="body">
-    <%= post.body %>
+    <%= truncate(post.body, length: 200, separator: ' ') { link_to('Read more', post) } %>
   </div>
   <div class="tags">
     Tags: <%= tags_for(post: post) %>
   </div>
   <div class="actions">
     <div class="action-item">
-      <%= link_to('Edit', edit_post_path(post), class: 'secondary') %>
-    </div>
-    <div class="action-item">
-      <%= link_to('Delete', post, method: 'delete', class: 'secondary') %>
+      <%= link_to('View', post, class: 'secondary') %>
     </div>
   </div>
   <div class="info">

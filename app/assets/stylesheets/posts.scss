@@ -1,3 +1,9 @@
+.post {
+  .tags, .actions, .info {
+    margin-top: 20px;
+  }
+}
+
 .posts {
   .post-item {
     margin: 10px 0;
@@ -18,8 +24,12 @@
     }
 
     .tags {
-      margin: 5px 0;
+      margin: 10px 0;
       font-size: 14px;
+    }
+
+    .title a {
+      text-decoration: none;
     }
 
     .info {

@@ -1,22 +1,31 @@
 class StatsController < ApplicationController
   def index
-    posts_stats
-    tags_stats
+    @posts_stats = posts_stats
+    # or call them load_*_stats if you want them to set the ivars
+    @tags_stats = tags_stats
   end
 
   private
 
   def posts_stats
-    @posts_stats = Hash.new(0)
-    Post.all.each do |p|
-      @posts_stats[p.user.name] += 1
-    end
+    # SELECT users.id, users.name, COUNT(posts.id) post_count
+    # FROM posts
+    # INNER JOIN users
+    # ON posts.user_id = users.id
+    # GROUP BY users.id, users.name
+
+    # Don't do it in memory. Do something like, though you may want a limit or order
+    Post
+      .references(:user)
+      .group(users: [:id, :name])
+      .select('COUNT(posts.id) AS post_count', users: [:name])
+      .pluck('users.name', 'post_count').to_h
   end
 
   def tags_stats
-    @tags_stats = Hash.new(0)
-    Tag.all.each do |t|
-      @tags_stats[t.name] += t.post.count
-    end
+    Tag
+      .references(:posts)
+      .select('COUNT(posts.id) AS post_count', tags: [:name])
+      .pluck('tags.name', 'post_count').to_h
   end
 end

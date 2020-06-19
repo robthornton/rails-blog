@@ -1,11 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-comment_jane: {
-  body: 'Body',
+comment_jane:
+  body: 'Body'
   user: jane
-}
 
-comment_john: {
-  body: 'Body',
+comment_john:
+  body: 'Body'
   user: john
-}

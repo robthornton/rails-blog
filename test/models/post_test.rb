@@ -9,9 +9,12 @@ class PostTest < ActiveSupport::TestCase
     assert_equal(params[:user], post.user)
     assert_equal(params[:body], post.body)
 
+    # You don't have any tags in params. This isn't testing anything.
     post.tags.each_with_index do |i, tag|
       assert_equal(params[:tags][i], tag)
     end
+    # If you did have tags though, you could do something like this
+    #   assert_equal(params[:tag_names].sort, post.tag_names)
   end
 
   test 'post with tags' do
@@ -39,6 +42,11 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test 'post should not have empty title' do
+    # Avoid the variable name p, as you're shadowing the built in p method, which is roughly equivalent to
+    #   def p(object)
+    #     puts object.inspect
+    #     object
+    #   end
     p = params
     p[:title] = ''
     assert_raises { Post.create!(p) }

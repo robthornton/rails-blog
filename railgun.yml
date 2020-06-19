@@ -11,8 +11,8 @@ volumes:
   root:  '2G'
 
 services:
-  - redis
-  - memcached
+  - redis # You're _technically_ using redis in that ActionCable is hooked up to it, but you aren't using that. If you've got this here, I assume it's because you meant to use Redis for Sidekiq?
+  - memcached # You've got memcached, but aren't using it for anything. You probably mean to use it for caching with the dalli adapter?
   # - toxiproxy
   - mysql
   # - elasticsearch
@@ -21,7 +21,7 @@ services:
   # - magellan
   # - imagery
   - nginx
-  # - kafka
+  # - kafka # You're using Monorail and stuff, but you have kafka disabled here
 
 hostnames:
   - rails-blog.myshopify.io: { proxy_to_host_port: 48339 }

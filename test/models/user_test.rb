@@ -7,8 +7,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'create prevents duplicate user' do
-    existing_user = users(:jane)
-    user = User.create(name: existing_user.name, email: existing_user.email, password: existing_user.password)
-    assert_not(user.save)
+    assert_not(users(:jane).dup.save)
   end
 end

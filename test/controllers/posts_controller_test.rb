@@ -5,5 +5,4 @@ class BlogControllerTest < ActionDispatch::IntegrationTest
     get(posts_path)
     assert_response(:success)
   end
-
 end

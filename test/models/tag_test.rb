@@ -18,6 +18,8 @@ class TagTest < ActiveSupport::TestCase
   end
 
   test 'unable to create tag with empty name' do
-    assert_raise { Tag.create!(name: '') }
+    assert_raise do # Raise what?
+      Tag.create!(name: '')
+    end
   end
 end

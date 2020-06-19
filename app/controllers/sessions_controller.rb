@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
   private
 
   def login_params
-    params.except(:commit, :authenticity_token).permit(:email, :password)
+    # You shoudn't need to .except if you're about to .permit
+    params.permit(:email, :password)
   end
 end

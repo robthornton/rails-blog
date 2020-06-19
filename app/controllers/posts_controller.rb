@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action(:require_login, only: [:new, :create])
+  before_action(:require_login, only: [:new, :create, :edit, :update])
   before_action(:find_post, only: [:destroy, :edit, :show, :update])
 
   def create
-    post = Post.create(post_params.merge({ user: current_user}).except(:tags))
+    post = Post.new(post_params.merge({ user: current_user}))
 
-    unless post.errors.empty?
+    unless post.save
       post.errors.each do |k, err|
-        puts("Error: #{k}: #{err}")
+        Rails.logger.error("Error: #{k}: #{err}")
       end
 
       flash[:error] = 'Failed to create post'
@@ -18,19 +18,16 @@ class PostsController < ApplicationController
       return
     end
 
-    update_tags(post: post)
-
-    flash[:notice] = "New post '#{post.title.capitalize}' created successfully!"
+    flash[:notice] = "New post '#{post.title}' created successfully!"
     redirect_to(root_path)
   end
 
   def destroy
-    @post.destroy
-    redirect_to(root_path, notice: "'#{post.title.capitalize}' deleted")
+    @post.destroy!
+    redirect_to(root_path, notice: "'#{post.title}' deleted")
   end
 
   def edit
-    @tags = @post.tags.map(&:name).join(' ')
   end
 
   def index
@@ -41,29 +38,26 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def show; end
+  def show
+  end
 
   def update
-    @post.tags.clear
-    update_tags(post: @post)
-
-    @post.update(post_params.except(:tags))
-    redirect_to(@post, notice: "'#{@post.title.capitalize}' updated")
+    @post.update(post_params)
+    redirect_to(@post, notice: "'#{@post.title}' updated")
   end
 
   private
 
   def find_post
-    @post = Post.find(id)
-  end
-
-  def id
-    params[:id]
+    @post = current_user.posts.find(params.require(:id))
+    # Unless you have some sort of admin logic where they can edit other posts, in which case, you do something like
+    #   posts = current_user.admin? ? Post.all : current_user.posts
+    #   @post = posts.find(params.require(:id))
   end
 
   def post_params
-    puts("params: #{params}")
-    params.require(:post).permit(:body, :tags, :title)
+    # params are already logged, I think
+    params.require(:post).permit(:body, :tag_names, :title)
   end
 
   def require_login
@@ -73,15 +67,13 @@ class PostsController < ApplicationController
     end
   end
 
-  def update_tags(post:)
-    tags = post_params[:tags]
-
-    tags&.split&.each do |tag|
-      post.tags.find_or_create_by(name: tag)
-    end
-  end
-
+  # I believe there is a way to consolidate your view helpers and controller helpers. You may explicitly have to say
+  # something like
+  #   helper :users
+  # to access them from the controller. Not sure.
   def logged_in?
-    !email.nil?
+    # Does just having an email in your session mean you're logged in?
+    # What if you can't fine the user?
+    current_user.present?
   end
 end

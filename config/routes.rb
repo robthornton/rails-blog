@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get(:signup, to: 'users#new')
 
   # Stats page
-  get(:stats, to: 'stats#index')
+  resources(:stats, only: [:create])
 
   # Users
   resources(:users, only: [:create])

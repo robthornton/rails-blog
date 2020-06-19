@@ -6,7 +6,9 @@ class CommentTest < ActiveSupport::TestCase
   test 'create comment' do
     comment = Comment.create!(params)
 
-    assert(comment)
+    # You're kinda just testing Rails at this point
+
+    refute_nil(comment)
     assert_equal(params[:body], comment.body)
     assert_equal(params[:user], comment.user)
   end
@@ -14,6 +16,6 @@ class CommentTest < ActiveSupport::TestCase
   private
 
   def params
-    { body: 'Body',post: posts(:post_one), user: users(:jane) }
+    { body: 'Body', post: posts(:post_one), user: users(:jane) }
   end
 end

@@ -15,7 +15,11 @@ up:
   - bundler
   - railgun
   - database:
-      bootstrap: bin/rails db:create db:migrate db:schema:load
+      bootstrap: bin/rails db:create db:schema:load
+      # I'm 99% sure the bootstrap should NOT run migrations, it should just load the schema.rb.
+      # Incidentally, I found out because one of your migrations blew up due to a foreign key constraint being violated.
+      # I assume dev generated the contents of this section, in which case there's probably a dev PR to be made,
+      # or at least some digging to do to figure out why it's including db:migrate in the bootstrap...
       migrate: bin/rails db:migrate db:test:prepare
       host: rails-blog.railgun
       user: root

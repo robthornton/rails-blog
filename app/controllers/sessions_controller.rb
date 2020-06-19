@@ -2,6 +2,7 @@
 
 class SessionsController < ApplicationController
   def new
+    @user = User.new
   end
 
   def create
@@ -24,6 +25,6 @@ class SessionsController < ApplicationController
   private
 
   def login_params
-    params.except(:commit, :authenticity_token).permit(:email, :password)
+    params.require(:user).permit(:email, :password)
   end
 end

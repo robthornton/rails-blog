@@ -1,17 +1,17 @@
 <h1>Login</h1>
 
-<%= form_tag do %>
+<%= form_with(model: @user, url: login_path) do |f| %>
   <div class="field">
-    <%= label_tag(:email, 'Email:') %>
-    <%= email_field_tag(:email) %>
+    <%= f.label(:email, 'Email:') %>
+    <%= f.email_field(:email) %>
   </div>
   <div class="field">
-    <%= label_tag(:password, 'Password:') %>
-    <%= password_field_tag(:password) %>
+    <%= f.label(:password, 'Password:') %>
+    <%= f.password_field(:password) %>
   </div>
   <div class="field">
     <div class="actions">
-        <%= submit_tag('Login', {class: 'button button-primary'}) %>
+        <%= f.submit('Login', {class: 'button button-primary'}) %>
     </div>
   </div>
 <% end %>

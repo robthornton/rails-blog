@@ -10,7 +10,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'new session' do
     user = users(:jane)
-    params = { email: user.email, password: 'jane.doe.password' }
+    params = { user: { email: user.email, password: 'jane.doe.password' } }
     post(login_path, params: params)
 
     assert_redirected_to(root_path)
@@ -18,7 +18,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'new session with bad password fails to set session' do
     user = users(:jane)
-    params = { email: user.email, password: 'bad_password' }
+    params = { user: { email: user.email, password: 'bad_password' } }
     post(login_path, params: params)
 
     assert_redirected_to(login_path)

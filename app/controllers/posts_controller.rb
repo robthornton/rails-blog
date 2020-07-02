@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action(:find_post, only: [:destroy, :edit, :show, :update])
 
   def create
-    post = Post.create(post_params.merge({ user: current_user}).except(:tags))
+    post = Post.create(post_params.merge({ user: current_user}))
 
     unless post.errors.empty?
       post.errors.each do |k, err|
@@ -20,13 +20,13 @@ class PostsController < ApplicationController
 
     update_tags(post: post)
 
-    flash[:notice] = "New post '#{post.title.capitalize}' created successfully!"
+    flash[:notice] = "New post '#{post.title}' created successfully!"
     redirect_to(root_path)
   end
 
   def destroy
     @post.destroy
-    redirect_to(root_path, notice: "'#{post.title.capitalize}' deleted")
+    redirect_to(root_path, notice: "'#{post.title}' deleted")
   end
 
   def edit
@@ -44,11 +44,11 @@ class PostsController < ApplicationController
   def show; end
 
   def update
-    @post.tags.clear
-    update_tags(post: @post)
+    # @post.tags.clear
+    # update_tags(post: @post)
 
-    @post.update(post_params.except(:tags))
-    redirect_to(@post, notice: "'#{@post.title.capitalize}' updated")
+    @post.update(post_params)
+    redirect_to(@post, notice: "'#{@post.title}' updated")
   end
 
   private
@@ -63,7 +63,7 @@ class PostsController < ApplicationController
 
   def post_params
     puts("params: #{params}")
-    params.require(:post).permit(:body, :tags, :title)
+    params.require(:post).permit(:body, :tag_names, :title)
   end
 
   def require_login
@@ -73,13 +73,13 @@ class PostsController < ApplicationController
     end
   end
 
-  def update_tags(post:)
-    tags = post_params[:tags]
+  # def update_tags(post:)
+  #   tags = post_params[:tags]
 
-    tags&.split&.each do |tag|
-      post.tags.find_or_create_by(name: tag)
-    end
-  end
+  #   tags&.split&.each do |tag|
+  #     post.tags.find_or_create_by(name: tag)
+  #   end
+  # end
 
   def logged_in?
     !email.nil?

@@ -8,7 +8,7 @@ up:
         or:        [mysql@5.7]
         conflicts: [mysql-connector-c, mysql, mysql-client]
     # - another_package
-  - ruby: 2.6.3
+  - ruby: 2.6.6
   - node:
       version: v10.18.0
       yarn: 1.12.3

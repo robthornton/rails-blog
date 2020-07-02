@@ -1,15 +1,22 @@
 class StatsController < ApplicationController
   def index
-    posts_stats
+    authors_stats
     tags_stats
   end
 
   private
 
+  def authors_stats
+    @authors_stats = Hash.new(0)
+    Post.all.each do |p|
+      @authors_stats[p.user.name] += 1
+    end
+  end
+
   def posts_stats
     @posts_stats = Hash.new(0)
-    Post.all.each do |p|
-      @posts_stats[p.user.name] += 1
+    Comment.all.each do |c|
+      @posts_stats[c.user.name] += 1
     end
   end
 

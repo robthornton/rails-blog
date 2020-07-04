@@ -23,7 +23,8 @@ class StatsController < ApplicationController
   def tags_stats
     @tags_stats = Hash.new(0)
     Tag.all.each do |t|
-      @tags_stats[t.name] += t.post.count
+      count = t.post.count
+      @tags_stats[t.name] += count unless count == 0
     end
   end
 end

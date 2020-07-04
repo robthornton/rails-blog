@@ -44,9 +44,6 @@ class PostsController < ApplicationController
   def show; end
 
   def update
-    # @post.tags.clear
-    # update_tags(post: @post)
-
     @post.update(post_params)
     redirect_to(@post, notice: "'#{@post.title}' updated")
   end
@@ -72,14 +69,6 @@ class PostsController < ApplicationController
       redirect_to(login_url)
     end
   end
-
-  # def update_tags(post:)
-  #   tags = post_params[:tags]
-
-  #   tags&.split&.each do |tag|
-  #     post.tags.find_or_create_by(name: tag)
-  #   end
-  # end
 
   def logged_in?
     !email.nil?

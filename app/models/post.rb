@@ -21,7 +21,7 @@ class Post < ApplicationRecord
   # Helper that takes a space separated list of tags and attaches them
   # to a post. Used by forms.
   def tag_names=(joined_names)
-    names = joined_names.split
+    names = joined_names.downcase.split
 
     tags.clear
 

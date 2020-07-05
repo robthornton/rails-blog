@@ -4,8 +4,9 @@ Rails.application.routes.draw do
 
   # Blog/posts
   resources(:posts)
+  resources(:comments, only: [:create])
 
-  # Login
+  # Sessions
   get(:login, to: 'sessions#new')
   post(:login, to: 'sessions#create')
   get(:logout, to: 'sessions#destroy')

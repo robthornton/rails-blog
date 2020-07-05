@@ -3,7 +3,7 @@
 require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
-  test 'create comment' do
+  test '#create successful' do
     comment = Comment.create!(params)
 
     assert(comment)
@@ -11,9 +11,21 @@ class CommentTest < ActiveSupport::TestCase
     assert_equal(params[:user], comment.user)
   end
 
+  test '#create with empty body raises' do
+    assert_raises 'ArgumentError' do
+      Comment.create!(params.delete(:body))
+    end
+  end
+
+  test '#create with empty post raises' do
+    assert_raises 'ArgumentError' do
+      Comment.create!(params.delete(:post))
+    end
+  end
+
   private
 
   def params
-    { body: 'Body',post: posts(:post_one), user: users(:jane) }
+    { body: 'Body', post: posts(:post_one), user: users(:jane) }
   end
 end

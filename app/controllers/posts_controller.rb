@@ -41,7 +41,9 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def show; end
+  def show
+    @comment = Comment.new
+  end
 
   def update
     @post.update(post_params)

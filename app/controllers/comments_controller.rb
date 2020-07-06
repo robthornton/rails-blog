@@ -2,8 +2,13 @@
 
 class CommentsController < ApplicationController
   def create
-    Comment.create(comment_params)
-    head(:ok)
+    post = Post.find_by(comment_params[:post_id])
+
+    Comment.create!(comment_params)
+
+    redirect_to(post, notice: 'Comment added')
+  rescue ActiveRecord::RecordInvalid
+    redirect_to(post, alert: 'Body can not be empty')
   end
 
   private

@@ -24,4 +24,41 @@
       Created: <%= @post.created_at %>
     </div>
   </div>
+  <div class="comments">
+    <h3>Add a comment:</h3>
+    <div class="form">
+      <%= form_with(model: @comment) do |comment_form| %>
+        <div class="hidden">
+          <%= comment_form.hidden_field(:post_id, value: @post.id) %>
+          <%= comment_form.hidden_field(:user_id, value: current_user.id) %>
+        </div>
+        <div class="field">
+          <%= comment_form.label(:body, 'Comment:') %>
+          <%= comment_form.text_area(:body) %>
+        </div>
+        <div class="actions">
+          <div class="action-item">
+            <%= comment_form.submit('Add', class: 'primary') %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="list">
+      <% @post.comments.each do |comment| %>
+        <div class="item">
+          <div class="body">
+            <%= comment.body %>
+          </div>
+          <div class="info">
+            <div class="author">
+              Author: <%= comment.user.name %>
+            </div>
+            <div class="created">
+              Created: <%= comment.created_at %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
